@@ -1,0 +1,1 @@
+alert("shut down in 5 seconds");
