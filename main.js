@@ -18,7 +18,7 @@ $.ajax({
 				success: function(msg){
 				text=msg;
 				display(text);
-				setInterval("display(text)",150); 
+				setInterval("display(text)",100); 
 				
 				}
 })
