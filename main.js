@@ -14,11 +14,11 @@ text="123456789";
 
 $.ajax({
 				type: "GET",
-				url: "code.txt",
+				url: "poem.txt",
 				success: function(msg){
 				text=msg;
 				display(text);
-				setInterval("display(text)",300); 
+				setInterval("display(text)",150); 
 				
 				}
 })
