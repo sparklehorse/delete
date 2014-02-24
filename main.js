@@ -8,8 +8,8 @@ else
 {
 alert(text.substring(count,count+1).charCodeAt(0));
 }
-alert("fuck");
-alert(text.substring(count,count+1).charCodeAt(0));
+
+//alert(text.substring(count,count+1).charCodeAt(0));
 $("#display").append(text.substring(count,count+1));
 count++;
 }
