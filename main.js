@@ -4,6 +4,10 @@ if(text.substring(count,count+1)=="\n")
 {
 alert("n");
 }
+else
+{
+alert(charCodeAt(text.substring(count,count+1)));
+}
 $("#display").append(text.substring(count,count+1));
 count++;
 }
@@ -18,7 +22,7 @@ $.ajax({
 				url: "poem.txt",
 				success: function(msg){
 				text=msg;
-				display(text);
+				//display(text);
 				setInterval("display(text)",100); 
 				
 				}
