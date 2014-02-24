@@ -3,6 +3,7 @@ function display(text)
 if(text.substring(count,count+1)=="\n")
 {
 alert("n");
+$("#display").append("<br>");
 }
 else
 {
