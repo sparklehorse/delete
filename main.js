@@ -1,5 +1,6 @@
 function display(text)
 {
+alert(text.substring(count,count+1));
 $("#display").append(text.substring(count,count+1));
 count++;
 }
