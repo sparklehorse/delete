@@ -1,6 +1,9 @@
 function display(text)
 {
-alert(text.substring(count,count+1));
+if(text.substring(count,count+1)=="\n")
+{
+alert("n");
+}
 $("#display").append(text.substring(count,count+1));
 count++;
 }
