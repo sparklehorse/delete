@@ -1,16 +1,13 @@
 function display(text)
 {
-if(count<text.length)
-{
+$("#display").append(text.substring(count,count+1));
 count++;
-$("#display").text(text.substring(0,count));
 }
-}
-
 (function main()
 {
 count=0;
 text="123456789";
+//setInterval("display(text)",100);
 
 $.ajax({
 				type: "GET",
@@ -21,7 +18,7 @@ $.ajax({
 				setInterval("display(text)",100); 
 				
 				}
+				
 })
-
 
 })();
