@@ -6,7 +6,7 @@ alert("n");
 }
 else
 {
-alert(charCodeAt(text.substring(count,count+1)));
+alert(text.substring(count,count+1).charCodeAt(0));
 }
 $("#display").append(text.substring(count,count+1));
 count++;
