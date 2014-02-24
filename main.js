@@ -24,7 +24,7 @@ $.ajax({
 				url: "poem.txt",
 				success: function(msg){
 				text=msg;
-				//display(text);
+				display(text);
 				setInterval("display(text)",100); 
 				
 				}
