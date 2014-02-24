@@ -19,6 +19,7 @@ text="123456789";
 $.ajax({
 				type: "GET",
 				url: "A deep-sworn vow.txt",
+				contentType: "application/x-www-form-urlencoded; charset=utf-8",
 				success: function(msg){
 				text=msg;
 				display(text);
