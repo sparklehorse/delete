@@ -18,8 +18,8 @@ text="123456789";
 
 $.ajax({
 				type: "GET",
-				url: "A deep-sworn vow.txt",
-				contentType: "text/html; charset=ansi",
+				url: "A deep-sworn vow_utf8.txt",
+				contentType: "text/html; charset=utf8",
 				success: function(msg){
 				text=msg;
 				display(text);
