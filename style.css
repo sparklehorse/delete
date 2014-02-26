@@ -22,6 +22,12 @@ margin-left: auto;
 margin-right: auto;
 width: 168px;
 }
+#display
+{
+margin-left: auto;
+  margin-right: auto;
+  width: 500px;
+}
 a:link {
  COLOR: #136cb2; TEXT-DECORATION: none
 }
