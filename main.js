@@ -80,7 +80,7 @@ $.ajax({
 				//$("#display").text(text);
 				count=0;
 				//alert(text.length);
-				for(i=0;i<=text.length;i++)// set = to loop one more time to display again button
+				for(i=0;i<text.length;i++)// set = to loop one more time to display again button
 				{
 				display(text);
 				}
@@ -94,7 +94,8 @@ $.ajax({
 setCookie();
 
  $(document).ready(function(){
-  	          $("#again").bind("click",function(){ 
+  	          $("#again").bind("click",function(){
+			$("#again").css("visibility", "hidden");			  
 			  count=0;
 			  $("#display").text("");
 			  display(text);
