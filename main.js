@@ -13,7 +13,7 @@ count++;
 //}
 if(count==text.length)
 {
-$("#again").css("visibility", "visible");
+$("#again").fadeIn().css("visibility", "visible");
 clearInterval(intervalId);
 }
 }
