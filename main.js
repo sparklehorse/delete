@@ -13,7 +13,9 @@ count++;
 //}
 if(count==text.length)
 {
-$("#again").fadeIn().css("visibility", "visible");
+$("#again").fadeIn(1500, function() {
+          $("#again").css("visibility", "visible");
+        })
 clearInterval(intervalId);
 }
 }
