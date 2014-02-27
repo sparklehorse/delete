@@ -10,10 +10,30 @@ $("#display").append(text.substring(count,count+1));
 }
 count++;
 }
+function setCookie()
+{
+alert("set cookie")
+document.cookie="viewed=yes";
+//getCookie();
+}
+function getCookie()
+{
+var cookie=document.cookie;
+if(cookie=="")
+{
+alert("no cookie");
+}
+else
+{
+alert(cookie);
+}
+}
 (function main()
 {
 count=0;
 text="123456789";
+
+getCookie();
 //setInterval("display(text)",100);
 
 $.ajax({
@@ -28,5 +48,7 @@ $.ajax({
 				}
 				
 })
+
+setCookie();
 
 })();
