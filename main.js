@@ -13,7 +13,7 @@ count++;
 
 function setCookie()
 {
-alert("set cookie")
+//alert("set cookie")
 document.cookie="viewed=yes";
 //getCookie();
 }
@@ -82,7 +82,7 @@ setCookie();
   	          $("#again").bind("click",function(){ 
 			  $("#display").text("");
 			  display(text);
-				setInterval("display(text)",100);
+			  setInterval("display(text)",100);
 			  })
 			  })
 
