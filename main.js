@@ -68,7 +68,12 @@ $.ajax({
 				contentType: "text/html; charset=utf8",
 				success: function(msg){
 				text=msg;
-				$("#display").text(text);
+				//$("#display").text(text);
+				count=0;
+				for(int i=0;i<text.length;i++)
+				{
+				display(text);
+				}
 				//display(text);
 				//setInterval("display(text)",100); 
 				
@@ -80,6 +85,7 @@ setCookie();
 
  $(document).ready(function(){
   	          $("#again").bind("click",function(){ 
+			  count=0;
 			  $("#display").text("");
 			  display(text);
 			  setInterval("display(text)",100);
