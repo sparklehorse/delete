@@ -80,6 +80,7 @@ setCookie();
 
  $(document).ready(function(){
   	          $("#again").bind("click",function(){ 
+			  $("#display").text("");
 			  display(text);
 				setInterval("display(text)",100);
 			  })
