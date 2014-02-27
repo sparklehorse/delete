@@ -14,6 +14,7 @@ count++;
 if(count==text.length)
 {
 $("#again").css("visibility", "visible");
+clearInterval(intervalId);
 }
 }
 function display2(text)
@@ -50,7 +51,7 @@ document.cookie="";
 {
 count=0;
 text="123456789";
-
+intervalId="";
 var viewed=getCookie();
 if(viewed==0)
 {
@@ -63,8 +64,7 @@ $.ajax({
 				success: function(msg){
 				text=msg;
 				display(text);
-				setInterval("display(text)",100); 
-				
+				intervalId=setInterval("display(text)",100); 
 				}
 				
 })
@@ -99,7 +99,7 @@ setCookie();
 			  count=0;
 			  $("#display").text("");
 			  display(text);
-			  setInterval("display(text)",100);
+			  intervalId=setInterval("display(text)",100);
 			  })
 			  })
 
