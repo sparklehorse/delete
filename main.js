@@ -1,6 +1,6 @@
 function display(text)
 {
-if(count<text.length){
+//if(count<text.length){
 if(text.substring(count,count+1)=="\n")
 {
 $("#display").append("<br>");
@@ -10,8 +10,8 @@ else
 $("#display").append(text.substring(count,count+1));
 }
 count++;
-}
-else
+//}
+if(count==text.length)
 {
 $("#again").css("visibility", "visible");
 }
