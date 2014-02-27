@@ -70,7 +70,7 @@ $.ajax({
 				text=msg;
 				//$("#display").text(text);
 				count=0;
-				alert(text.length);
+				//alert(text.length);
 				for(i=0;i<text.length;i++)
 				{
 				display(text);
