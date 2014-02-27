@@ -1,5 +1,6 @@
 function display(text)
 {
+if(count<text.length){
 if(text.substring(count,count+1)=="\n")
 {
 $("#display").append("<br>");
@@ -10,7 +11,15 @@ $("#display").append(text.substring(count,count+1));
 }
 count++;
 }
+else
+{
+$("#again").style.display='block';
+}
+}
+function display2(text)
+{
 
+}
 function setCookie()
 {
 //alert("set cookie")
