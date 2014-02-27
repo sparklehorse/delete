@@ -13,7 +13,7 @@ count++;
 }
 else
 {
-$("#again").style.display='block';
+$("#again").css("visibility", "visible");
 }
 }
 function display2(text)
@@ -80,7 +80,7 @@ $.ajax({
 				//$("#display").text(text);
 				count=0;
 				//alert(text.length);
-				for(i=0;i<=text.length;i++)
+				for(i=0;i<=text.length;i++)// set = to loop one more time to display again button
 				{
 				display(text);
 				}
