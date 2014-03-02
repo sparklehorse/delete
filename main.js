@@ -105,7 +105,8 @@ setCookie();
 			  })
 			  })
 $(document).ready(function(){
-var msg=$(".post-message p:first").html
+var msg=$("dsq-2").contents().find(".post-message p:first").html();
+//var msg=$(".post-message p:first").html
 alert(msg);
 			  })
 
