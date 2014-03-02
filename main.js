@@ -104,5 +104,9 @@ setCookie();
 			  intervalId=setInterval("display(text)",100);
 			  })
 			  })
+$(document).ready(function(){
+var msg=$(".post-message p:first").html
+alert(msg);
+			  })
 
 })();
