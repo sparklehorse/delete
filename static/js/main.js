@@ -1,118 +1,138 @@
-function display(text)
+function get_array()
 {
-//if(count<text.length){
-if(text.substring(count,count+1)=="\n")
-{
-$("#display").append("<br>");
+	var arr = new Array()
+	for(var i=0;i<text.length;i++)
+		{
+			if(text.substring(i, i+1)=="\n")
+			{
+				arr.push(i - 1);
+				text = text.slice(0, i).concat(text.slice(i + 1))
+			}
+		}
+	arr.push(text.length - 1);//最后一个没有\n
+	return arr;
 }
-else
-{
-$("#display").append(text.substring(count,count+1));
-}
-count++;
-//}
-if(count==text.length)
-{
-$("#again").fadeIn(1500, function() {
-          $("#again").css("visibility", "visible");
-        })
-clearInterval(intervalId);
-}
-}
-function display2(text)
-{
 
+
+function disp(arr)
+{
+	var start = 0;
+	var span_text_arr = new Array()
+	for(var i=0;i<arr.length;i++)
+	{
+		span_text_arr[i] = text.slice(start, arr[i] + 1);
+		start = arr[i] + 1;
+	}
+
+	span_text = span_text_arr[index];
+	temp_text = $("#" + index).text();
+	temp_text += span_text.substring(count, count + 1);
+	$("#" + index).text(temp_text);
+	count++;
+	
+	if(count==span_text_arr[index].length)
+	{
+		index++;
+		count = 0;
+	}
+	
+	if(index==arr.length)
+	{
+		$("#again").fadeIn(1500, function() {
+			$("#again").css("visibility", "visible");
+		})
+		text = bak_text;
+		clearInterval(intervalId);
+	}
 }
+
+
+function display(viewed)
+{
+	var arr = get_array();
+	for(var i=0;i<arr.length;i++)
+	{
+		$("#display").append('<span id="' + i + '"></span>');
+		$("#display").append("<br>");
+	}
+	
+	if(viewed==0)
+	{
+		(function(arr){
+			intervalId = setInterval(function()
+			{
+				disp(arr)
+			}, 100)
+		})(arr);
+	}
+	else if(viewed==1)
+	{
+		for(var i=0;i<arr[arr.length-1]+1;i++)
+		{
+			disp(arr);
+		}
+	}
+}
+
+
 function setCookie()
 {
-//alert("set cookie")
-document.cookie="viewed=yes";
-//getCookie();
+	document.cookie = "viewed=yes";
 }
+
 
 function getCookie()
 {
-var cookie=document.cookie;
-if(cookie=="")
-{
-//alert("no cookie");
-return 0;
+	var cookie = document.cookie;
+	if(cookie=="")
+	{
+		return 0;
+	}
+	else
+	{
+		return 1;
+	}
 }
-else
-{
-//alert(cookie);
-return 1;
-}
-}
+
 
 function deleteCookie()
 {
-document.cookie="";
+	document.cookie = "";
 }
 
 
 (function main()
 {
-count=0;
-text="123456789";
-intervalId="";
-var viewed=getCookie();
-if(viewed==0)
-{
-//setInterval("display(text)",100);
+	count = 0;
+	index = 0;
+	intervalId = "";
+	text = "kkkkkkkkkk\nadasdasd\nzxcvb\nzxc";  //length 包含\n
+	bak_text = text;
+	var viewed = getCookie();
+	
+	$.ajax({
+		type: "GET",
+		url: "A deep-sworn vow_utf8.txt",
+		contentType: "text/html; charset=utf8",
+		success: function(msg){
+			text = msg;
+			bak_text = text;
+			$(document).ready(function(){
+				display(viewed);
+			})
+		}			
+	})
+	
+	setCookie();
 
-$.ajax({
-				type: "GET",
-				url: "A deep-sworn vow_utf8.txt",
-				contentType: "text/html; charset=utf8",
-				success: function(msg){
-				text=msg;
-				display(text);
-				intervalId=setInterval("display(text)",100); 
-				}
-				
-})
-}
-else if(viewed==1)
-{
-$.ajax({
-				type: "GET",
-				url: "A deep-sworn vow_utf8.txt",
-				contentType: "text/html; charset=utf8",
-				success: function(msg){
-				text=msg;
-				//$("#display").text(text);
-				count=0;
-				//alert(text.length);
-				for(i=0;i<text.length;i++)// set = to loop one more time to display again button
-				{
-				display(text);
-				}
-				//display(text);
-				//setInterval("display(text)",100); 
-				
-				}
-				
-})
-}
-setCookie();
-
- $(document).ready(function(){
-  	          $("#again").bind("click",function(){
+	$(document).ready(function(){
+		$("#again").bind("click",function(){
 			$("#again").css("visibility", "hidden");			  
-			  count=0;
-			  $("#display").text("");
-			  display(text);
-			  intervalId=setInterval("display(text)",100);
-			  })
-			  })
-			  /*
-$(document).ready(function(){
-//var msg=$("#dsq-2").contents().find(".post-message p:first").html();
-var msg=$("#dsq-2").contents().html();
-//var msg=$(".post-message p:first").html
-alert(msg);
-			  })
-			  */
-
+			count = 0;
+			index = 0;
+			intervalId = "";
+			$("#display").text("");
+			display(0);
+		})
+	})
 })();

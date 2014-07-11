@@ -27,6 +27,8 @@ height:400px;
 margin:25px;
 margin-left:200px;
 float:left;
+~background-color: #252525;
+color: #252525;
 }
 #a:link {
  COLOR: #136cb2; TEXT-DECORATION: none
@@ -75,6 +77,13 @@ margin-top:2%;
 margin-bottom:10%;
 }
 
+.project
+{
+~margin-top:10%;
+~margin-bottom:10%;
+padding-top:10px;
+}
+
 .left
 {
 width:70%;
@@ -85,4 +94,15 @@ float:left;
 {
 width:28%;
 float:right;
+}
+
+.right img
+{
+height:100px;
+width:100px;
+}
+
+span
+{
+background-color: #252525;
 }
