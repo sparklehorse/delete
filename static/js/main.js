@@ -1,12 +1,37 @@
+function rgb2hex(rgb)
+{
+	rgb = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+	function hex(x)
+	{
+		return ("0" + parseInt(x).toString(16)).slice(-2);
+	}
+	return "#" + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
+}
+
+
+function inverse(count)
+{
+	color = $("#td" + count).css("background-color");
+	color = rgb2hex(color);
+	if(color=="#252525")
+	{
+		$("#td" + count).css("background-color", "#F0F0F0");
+	}
+	else if(color=="#F0F0F0"||color=="#f0f0f0")
+	{
+		$("#td" + count).css("background-color", "#252525");
+	}
+}
 function get_array()
 {
-	var arr = new Array()
+	var arr = new Array();
 	for(var i=0;i<text.length;i++)
 		{
-			if(text.substring(i, i+1)=="\n")
+			if(text.slice(i, i + 1)=="\n")
 			{
 				arr.push(i - 1);
-				text = text.slice(0, i).concat(text.slice(i + 1))
+				text = text.slice(0, i).concat(text.slice(i + 1));
+				i--;
 			}
 		}
 	arr.push(text.length - 1);//最后一个没有\n
@@ -14,29 +39,12 @@ function get_array()
 }
 
 
-function disp(arr)
+function disp()
 {
-	var start = 0;
-	var span_text_arr = new Array()
-	for(var i=0;i<arr.length;i++)
-	{
-		span_text_arr[i] = text.slice(start, arr[i] + 1);
-		start = arr[i] + 1;
-	}
-
-	span_text = span_text_arr[index];
-	temp_text = $("#" + index).text();
-	temp_text += span_text.substring(count, count + 1);
-	$("#" + index).text(temp_text);
+	$("#td" + count).text(text.slice(count, count + 1));
+	$("#td" + count).css("background-color", "#252525");
 	count++;
-	
-	if(count==span_text_arr[index].length)
-	{
-		index++;
-		count = 0;
-	}
-	
-	if(index==arr.length)
+	if(count==text.length)
 	{
 		$("#again").fadeIn(1500, function() {
 			$("#again").css("visibility", "visible");
@@ -46,32 +54,54 @@ function disp(arr)
 	}
 }
 
-
 function display(viewed)
 {
 	var arr = get_array();
+	var count = 0;
+	$("#display").append("<table>");
+	$("table").append("<tbody>");
 	for(var i=0;i<arr.length;i++)
 	{
-		$("#display").append('<span id="' + i + '"></span>');
-		$("#display").append("<br>");
+		$("tbody").append('<tr id="' + i + '"></tr>');
+		if(i==0)
+		{
+			length = arr[i] + 1;
+		}
+		else
+		{
+			length = arr[i] - arr[i - 1];
+		}
+		if(length==0)// 空行
+		{
+			$("#" + i).append('<td id="td_blank"></td>');
+		}
+		else
+		{
+			for(var j=0;j<length;j++)
+			{
+				$("#" + i).append('<td id="td' + count + '" onclick="inverse('+ count +')" ></td>');
+				count++;
+			}
+		}
 	}
 	
 	if(viewed==0)
 	{
-		(function(arr){
+		(function(){
 			intervalId = setInterval(function()
 			{
-				disp(arr)
-			}, 100)
-		})(arr);
+				disp()
+			}, 500)
+		})();
 	}
 	else if(viewed==1)
 	{
 		for(var i=0;i<arr[arr.length-1]+1;i++)
 		{
-			disp(arr);
+			disp();
 		}
 	}
+	
 }
 
 
@@ -106,10 +136,10 @@ function deleteCookie()
 	count = 0;
 	index = 0;
 	intervalId = "";
-	text = "kkkkkkkkkk\nadasdasd\nzxcvb\nzxc";  //length 包含\n
+	text = "kkkkkkkkkk\n\nadasdasd\nzxcvb\nzxc";  //length 包含\n
 	bak_text = text;
 	var viewed = getCookie();
-	
+
 	$.ajax({
 		type: "GET",
 		url: "A deep-sworn vow_utf8.txt",
@@ -122,7 +152,7 @@ function deleteCookie()
 			})
 		}			
 	})
-	
+
 	setCookie();
 
 	$(document).ready(function(){
